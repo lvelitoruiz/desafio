@@ -2,16 +2,17 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
+class AppMocked extends AppComponent {}
+
 describe('AppComponent', () => {
+  let sut: AppMocked;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent],
     }).compileComponents();
+    sut = new AppMocked();
   });
 
   it('should create the app', () => {
@@ -26,10 +27,18 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('desafio');
   });
 
-  it('should render title', () => {
+  it(`should change menuopen to false`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('desafio app is running!');
+    const app = fixture.componentInstance;
+    spyOn(app, 'closeMenu');
+    app.closeMenu();
+    expect(app.isMenuOpen).toBe(false);
+  });
+
+  it(`should change menuopen to true`, () => {
+    spyOn(sut, 'openMenu');
+    sut.openMenu();
+    console.log(sut.isMenuOpen);
+    expect(sut.openMenu).toHaveBeenCalled();
   });
 });

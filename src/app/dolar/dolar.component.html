@@ -1,0 +1,20 @@
+<div class="list-container" #elementsContainer>
+  <h2>{{ title }}</h2>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur euismod,
+    lacus vitae consectetur consectetur, ipsum arcu ultrices velit, eget finibus
+    dolor nunc sit amet enim. Aenean suscipit sem in nisl sodales, interdum
+    luctus sapien volutpat.
+  </p>
+  <mat-spinner *ngIf="values.length === 0"></mat-spinner>
+
+  <div class="list-container--cards">
+    <app-card
+      *ngFor="let value of valuePag"
+      [priceData]="value"
+      [unit]="currency"
+      [info]="title"
+      [elemento]="element"
+    ></app-card>
+  </div>
+</div>

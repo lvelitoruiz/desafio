@@ -1,0 +1,35 @@
+.list {
+  &-container {
+    min-height: 20px;
+    overflow: hidden;
+    background: #ececec;
+
+    h2 {
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 2em;
+      margin: 60px 60px 30px 60px;
+      text-transform: uppercase;
+    }
+
+    p {
+      width: calc(100% - 120px);
+      margin: 0 auto 30px;
+    }
+
+    mat-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &--cards {
+      width: calc(100% - 40px);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+  }
+}

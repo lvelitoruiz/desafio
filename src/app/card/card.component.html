@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header"><mat-icon>grade</mat-icon> {{ elemento }}</div>
+  <div class="card-content">
+    <p class="information">{{ info }}</p>
+    <p class="dates"><mat-icon>calendar_today</mat-icon> {{ date }}</p>
+    <p class="prices"><mat-icon>card_giftcard</mat-icon> {{ price }}</p>
+  </div>
+  <div class="card-footer">
+    <input type="button" (click)="copyToClipboard($event)" value="Copiar" />
+  </div>
+</div>
