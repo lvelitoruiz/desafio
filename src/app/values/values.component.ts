@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -28,7 +28,11 @@ export class ValuesComponent implements OnInit {
 
   @ViewChild('elementsContainer') elementView: ElementRef;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -58,10 +62,16 @@ export class ValuesComponent implements OnInit {
   showElements(): void {
     console.log(this.element);
     this.apiService.sendGetRequest(this.element).subscribe((res: any) => {
-      this.currency = res.unit;
-      this.title = res.name;
-      this.values = Object.entries(res.values);
-      this.showValues(this.begin, this.limitSet);
+      console.log('any working', res);
+      if (res && res.values) {
+        this.currency = res.unit;
+        this.title = res.name;
+        this.values = Object.entries(res.values);
+        this.showValues(this.begin, this.limitSet);
+      } else {
+        alert('You are searching for a category we do not have.');
+        this.router.navigate(['values'], { queryParams: { element: 'oro' } });
+      }
     });
   }
 

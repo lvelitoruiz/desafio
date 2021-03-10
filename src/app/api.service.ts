@@ -35,8 +35,10 @@ export class ApiService {
   }
 
   public sendGetRequest(param: string) {
-    return this.httpClient.get(this.SERVER_URL + param, {
-      observe: 'body',
-    });
+    return this.httpClient
+      .get(this.SERVER_URL + param, {
+        observe: 'body',
+      })
+      .pipe(catchError(this.handleError));
   }
 }
