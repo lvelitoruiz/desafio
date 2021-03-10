@@ -6,13 +6,16 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ApiService } from '../api.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-gold',
-  templateUrl: './gold.component.html',
-  styleUrls: ['./gold.component.scss'],
+  selector: 'app-values',
+  templateUrl: './values.component.html',
+  styleUrls: ['./values.component.scss'],
 })
-export class GoldComponent implements OnInit {
+export class ValuesComponent implements OnInit {
   public currency: string;
   public title: string;
   public values = [];
@@ -20,19 +23,19 @@ export class GoldComponent implements OnInit {
   public limitSet: number = 40;
   public valuePag = [];
   public elementHeight;
-  public element: string = 'oro';
+  public getElements: Observable<string>;
+  public element: string;
 
   @ViewChild('elementsContainer') elementView: ElementRef;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.apiService.sendGetRequest('oro').subscribe((res: any) => {
-      this.currency = res.unit;
-      this.title = res.name;
-      this.values = Object.entries(res.values);
-      this.showValues(this.begin, this.limitSet);
+    this.route.queryParams.subscribe((params) => {
+      this.element = params['element'];
+      this.showElements();
     });
+    console.log(this.element);
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -50,6 +53,16 @@ export class GoldComponent implements OnInit {
     this.elementHeight =
       this.elementView.nativeElement.clientHeight +
       this.elementView.nativeElement.offsetTop;
+  }
+
+  showElements(): void {
+    console.log(this.element);
+    this.apiService.sendGetRequest(this.element).subscribe((res: any) => {
+      this.currency = res.unit;
+      this.title = res.name;
+      this.values = Object.entries(res.values);
+      this.showValues(this.begin, this.limitSet);
+    });
   }
 
   showValues(beginning: number, limit: number): void {

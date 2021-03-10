@@ -6,26 +6,50 @@
     <li (click)="closeMenu()" routerLink="/">
       <mat-icon>home</mat-icon><span>Home</span>
     </li>
-    <li (click)="closeMenu()" routerLink="/gold">
+    <li
+      (click)="closeMenu()"
+      routerLink="/values"
+      [queryParams]="{ element: 'oro' }"
+    >
       <mat-icon>card_giftcard</mat-icon
       ><span><i>Consultar el precio del </i>Oro</span>
     </li>
-    <li (click)="closeMenu()" routerLink="/silver">
+    <li
+      (click)="closeMenu()"
+      routerLink="/values"
+      [queryParams]="{ element: 'plata' }"
+    >
       <mat-icon>card_travel</mat-icon
       ><span><i>Consultar el precio de la </i>Plata</span>
     </li>
-    <li (click)="closeMenu()" routerLink="/copper">
+    <li
+      (click)="closeMenu()"
+      routerLink="/values"
+      [queryParams]="{ element: 'cobre' }"
+    >
       <mat-icon>card_membership</mat-icon
       ><span><i>Consultar el precio del </i>Cobre</span>
     </li>
-    <li (click)="closeMenu()" routerLink="/euro">
+    <li
+      (click)="closeMenu()"
+      routerLink="/values"
+      [queryParams]="{ element: 'euro' }"
+    >
       <mat-icon>euro</mat-icon><span><i>Consultar el precio del </i>Euro</span>
     </li>
-    <li (click)="closeMenu()" routerLink="/dolar">
+    <li
+      (click)="closeMenu()"
+      routerLink="/values"
+      [queryParams]="{ element: 'dolar' }"
+    >
       <mat-icon>credit_card</mat-icon
       ><span><i>Consultar el precio del </i>Dolar</span>
     </li>
-    <li (click)="closeMenu()" routerLink="/yen">
+    <li
+      (click)="closeMenu()"
+      routerLink="/values"
+      [queryParams]="{ element: 'yen' }"
+    >
       <mat-icon>polymer</mat-icon
       ><span><i>Consultar el precio del </i>Yen</span>
     </li>

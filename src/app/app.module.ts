@@ -8,26 +8,11 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardComponent } from './card/card.component';
-import { GoldComponent } from './gold/gold.component';
-import { SilverComponent } from './silver/silver.component';
-import { CopperComponent } from './copper/copper.component';
-import { EuroComponent } from './euro/euro.component';
-import { DolarComponent } from './dolar/dolar.component';
-import { YenComponent } from './yen/yen.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ValuesComponent } from './values/values.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    CardComponent,
-    GoldComponent,
-    SilverComponent,
-    CopperComponent,
-    EuroComponent,
-    DolarComponent,
-    YenComponent,
-  ],
+  declarations: [AppComponent, HomeComponent, CardComponent, ValuesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
